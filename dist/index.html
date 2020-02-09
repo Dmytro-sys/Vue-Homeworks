@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Logos page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="./styles/main.min.css" />
+</head>
+
+<body>
+    <header>
+        <span>LOGO</span>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/about">About</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+        <div id="app">
+            <input v-model="inputValue" type="text">{{inputValue}}
+
+            <ul>
+                <list-item v-bind:value="inputValue"></list-item>
+            </ul>
+
+        </div>
+
+        <div id="app2">
+            <span v-bind:title='message'>Lorem, ipsum dolor sit amet consectetur
+
+	 adipisicing elit. Saepe, quasi.
+
+	</span>
+        </div>
+
+        <div id="app3">
+            <span v-if='seen'>Now you see me
+
+	</span>
+        </div>
+
+        <div id="app4">
+            <ul>
+                <li v-for="(todo, index) in todos">
+                    {{ todo.text }} {{index}}
+                </li>
+            </ul>
+        </div>
+
+
+        <div id="app5">
+            <p>{{message}}</p>
+            <button v-on:click="reverseMessage">Click to reverse!
+            </button>
+        </div>
+
+        <div id="app6">
+            <p>{{message}}</p>
+            <input type="text" v-model="message">
+        </div>
+
+        <div id="app7">
+            <ul>
+                <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id">
+                </todo-item>
+            </ul>
+        </div>
+
+
+    </main>
+    <footer>footer</footer>
+    <script src="./js/main.min.js"></script>
+</body>
+
+</html>

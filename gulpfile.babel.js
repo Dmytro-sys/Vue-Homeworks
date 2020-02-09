@@ -50,7 +50,7 @@ export const development = gulp.series(
     isPug ? 'pug' : 'njk',
     'styles',
     'scripts',
-    'images',
+    // 'images',
     'fonts',
   ]),
   gulp.parallel('serve'),
@@ -63,7 +63,7 @@ export const prod = gulp.series(
     'njk',
     'styles',
     'scripts',
-    'images',
+    // 'images',
     'fonts',
   ]),
 );
