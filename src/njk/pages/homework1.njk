@@ -1,0 +1,35 @@
+{% set title = "My page" %}
+{% extends "layouts/master.njk" %}
+
+{% block content %}
+{# завдання 1 #}
+<div id="list" class="container">
+	<h2>{{title}}</h2>
+	<ul>
+		<li v-for="(item, index) in items" v-on:click="deleteItem(index)" class="item">
+			{{item.text}}
+		</li>
+	</ul>
+</div>
+
+{# завдання 2 #}
+<div id="listComponent" class="container">
+	<h2>{{title}}</h2>
+	<ul>
+		<list-item v-for="(item, index) in mytasks" v-bind:value="item" v-bind:key="item.id"
+			v-on:click="deleteTask(index)" class="item">
+		</list-item>
+	</ul>
+</div>
+
+{# завдання 3 #}
+<div id="randomList" class="container">
+	<h2>{{title}}</h2>
+	<ul v-on:load="shuffleDeck">
+		<li v-for="item in items" class="item">
+			{{item.text}}
+		</li>
+	</ul>
+</div>
+
+{% endblock %}

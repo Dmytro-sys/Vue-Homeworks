@@ -9,7 +9,7 @@ const argv = yargs.argv,
 const requireDir = require('require-dir'),
   paths = {
     njk: {
-      src: ['./src/njk/*.njk', './src/njk/pages/*.njk'],
+      src: ['./src/njk/*.njk', './src/njk/pages/*.njk', './src/njk/Vue homeworks/*.njk'],
       dist: './dist/',
       watch: ['./src/blocks/**/*.njk', './src/njk/**/*.njk'],
     },
