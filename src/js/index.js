@@ -1,152 +1,80 @@
 import '@babel/polyfill';
 import Vue from 'vue/dist/vue.esm.js';
 
-Vue.component('list-item', {
-  props: ['value'],
-  template: '<li>{{value.text}} - {{value.id}}</li>',
-  methods: {
-    removeTask(index) {
-      this.mytasks.splice(index, 1);
-    }
+Vue.component('blog-list', {
+  template: '<ul><slot></slot></ul>',
+  created() {
+    console.log("blog-list created");
+  }
+});
+
+Vue.component('blog-item', {
+  template: '<li>{{ title }}, {{ subtittle }}</li>',
+  beforeCreate() {
+    console.log("blog-item beforeCreate complete" +
+      ", " + `data from app1 is ${ this.title }`);
+  },
+  created() {
+    this.title = this.$root.title
+    console.log("blog-item created complete" + ", " +
+      `now we can get data from $root element, this.title = ${ this.title }`);
+  },
+  beforeMount() {
+    this.subtittle = this.$root.subtittle
+    console.log("blog-item beforeMount complete" + ", " +
+      `let's take more data from app1, this.subtittle = ${ this.subtittle }.`,
+      ` this.$el is ${this.$el} yet, but it will soon created!`);
+  },
+  mounted() {
+    console.log("blog-item mounted complete" + ", " +
+      `access to reactive component, templates and rendered DOM,
+    this.$el.textContent = ${ this.$el.textContent }`);
+    this.$el.style.color = 'red';
+    this.$el.style.fontSize = '26px';
+    this.$el.style.listStyle = 'square';
   },
 });
 
+Vue.component('first-component', {
+  props: ['count'],
+  template: `<input type="text" placeholder="Count + 1">`,
+  created() {
+    console.log("first-component created");
+  }
+});
+
+Vue.component('second-component', {
+  data: function () {
+    return {
+      count: 0
+    }},
+    template: '<p v-on:mouseover="count++">Count is {{ count }}</p>',
+  created() {
+    console.log("second-component created");
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
-    el: '#list',
+  const app1 = new Vue({
+    el: '#app1',
     data: {
       title: 'Task list',
-      items: [{
-          text: "Task 1"
-        },
-        {
-          text: "Task 2"
-        },
-        {
-          text: "Task 3"
-        },
-        {
-          text: "Task 4"
-        },
-        {
-          text: "Task 5"
-        },
-        {
-          text: "Task 6"
-        },
-        {
-          text: "Task 7"
-        },
-        {
-          text: "Task 8"
-        },
-        {
-          text: "Task 9"
-        },
-      ]
+      subtittle: 'my task list name'
     },
-
-    methods: {
-      deleteItem: function (index) {
-        this.items.splice(index, 1);
-      }
+    created() {
+      console.log("app1 created");
     }
   });
 
   const app2 = new Vue({
-    el: '#listComponent',
-    data: {
-      title: 'Task list from components',
-      mytasks: [{
-          id: 1,
-          text: "My task 1"
-        },
-        {
-          id: 2,
-          text: "My task 2"
-        },
-        {
-          id: 3,
-          text: "My task 3"
-        },
-        {
-          id: 4,
-          text: "My task 4"
-        },
-        {
-          id: 5,
-          text: "My task 5"
-        },
-        {
-          id: 6,
-          text: "My task 6"
-        },
-        {
-          id: 7,
-          text: "My task 7"
-        },
-        {
-          id: 8,
-          text: "My task 8"
-        },
-        {
-          id: 9,
-          text: "My task 9"
-        },
-      ]
-    },
-
+    el: '#app2',
     methods: {
-      deleteTask(item) {
-        const todoIndex = this.mytasks.indexOf(item);
-        this.mytasks.splice(todoIndex, 1);
-      },
+      countUp() {
+        return this.count += 1;
+      }
     },
-  });
-
-  const app3 = new Vue({
-    el: '#randomList',
-    data: {
-      title: 'Random list',
-      items: [{
-          text: "Task 1"
-        },
-        {
-          text: "Task 2"
-        },
-        {
-          text: "Task 3"
-        },
-        {
-          text: "Task 4"
-        },
-        {
-          text: "Task 5"
-        },
-        {
-          text: "Task 6"
-        },
-        {
-          text: "Task 7"
-        },
-        {
-          text: "Task 8"
-        },
-        {
-          text: "Task 9"
-        },
-      ]
-    },
-    computed: {
-      shuffleDeck() {
-        for (let i = this.items.length - 1; i > 0; i--) {
-          let randomIndex = Math.floor(Math.random() * i);
-
-          let temp = this.items[i];
-          Vue.set(this.items, i, this.items[randomIndex]);
-          Vue.set(this.items, randomIndex, temp);
-        }
-      },
-    },
+    created() {
+      console.log("app2 created");
+    }
   });
 });

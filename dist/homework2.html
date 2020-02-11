@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>About page</title>
+    <title>My page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="./styles/main.css" />
 </head>
@@ -24,7 +24,21 @@
     </header>
     <main>
 
-        <h1>About page</h1>
+
+        <div id="app1">
+
+            <blog-list>
+                <blog-item></blog-item>
+            </blog-list>
+
+        </div>
+
+        <div id="app2">
+
+            <first-component v-on:click="countUp"></first-component>
+            <second-component></second-component>
+
+        </div>
 
     </main>
     <footer>footer</footer>

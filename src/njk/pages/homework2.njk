@@ -1,0 +1,20 @@
+{% set title = "My page" %}
+{% extends "layouts/master.njk" %}
+
+{% block content %}
+{# завдання 1 #}
+<div id="app1">
+
+    <blog-list>
+        <blog-item></blog-item>
+    </blog-list>
+
+</div>
+{# завдання 2 #}
+<div id="app2">
+
+    <first-component v-on:click="countUp"></first-component>
+    <second-component></second-component>
+
+</div>
+{% endblock %}
