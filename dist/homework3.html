@@ -31,7 +31,7 @@
                 <input v-model="question">
             </p>
             <p class="apiAnswer">{{ answer }}</p>
-            <img class="apiImage" :src="image" alt="">
+            <img :class="{ apiImage: isActive }" :src="image" alt="">
         </div>
 
 

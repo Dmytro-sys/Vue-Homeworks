@@ -1041,50 +1041,37 @@ main {
 .apiImage {
   display: block;
   margin: 0 auto;
+  position: relative;
   opacity: 0;
-  transition: all 3s linear;
-  animation: bounce 3s 1, show 3s 1;
+  transition: all 0.5s ease-in-out;
+  animation: show 1s 1;
   animation-fill-mode: forwards;
-  animation-delay: 1s;
-}
-
-@keyframes bounce {
-  from {
-    top: 100px;
-    animation-timing-function: ease-out;
-  }
-
-  25% {
-    top: 50px;
-    animation-timing-function: ease-in;
-  }
-
-  50% {
-    top: 100px;
-    animation-timing-function: ease-out;
-  }
-
-  75% {
-    top: 75px;
-    animation-timing-function: ease-in;
-  }
-
-  to {
-    top: 100px;
-  }
 }
 
 @keyframes show {
   0% {
     opacity: 0;
+    left: 0;
+  }
+
+  25% {
+    opacity: 0.25;
+    left: 15%;
   }
 
   50% {
     opacity: 0.5;
+    left: -10%;
+  }
+
+  75% {
+    opacity: 0.75;
+    left: 5%;
   }
 
   100% {
     opacity: 1;
+    left: 0;
   }
 }
 /*# sourceMappingURL=maps/main.css.map */
