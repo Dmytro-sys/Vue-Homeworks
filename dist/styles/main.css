@@ -1031,4 +1031,60 @@ main {
   display: flex;
   justify-content: space-around;
 }
+
+.apiAnswer {
+  text-align: center;
+  font-size: 1.3em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.apiImage {
+  display: block;
+  margin: 0 auto;
+  opacity: 0;
+  transition: all 3s linear;
+  animation: bounce 3s 1, show 3s 1;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+}
+
+@keyframes bounce {
+  from {
+    top: 100px;
+    animation-timing-function: ease-out;
+  }
+
+  25% {
+    top: 50px;
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    top: 100px;
+    animation-timing-function: ease-out;
+  }
+
+  75% {
+    top: 75px;
+    animation-timing-function: ease-in;
+  }
+
+  to {
+    top: 100px;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
 /*# sourceMappingURL=maps/main.css.map */

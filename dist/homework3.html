@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue homework 3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="./styles/main.css" />
+</head>
+
+<body>
+    <header>
+        <span>LOGO</span>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/about">About</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+
+        <div id="watch-example">
+            <p>
+                Задайте вопрос, на который можно ответить «да» или «нет»:
+                <input v-model="question">
+            </p>
+            <p class="apiAnswer">{{ answer }}</p>
+            <img class="apiImage" :src="image" alt="">
+        </div>
+
+
+
+    </main>
+    <footer>footer</footer>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

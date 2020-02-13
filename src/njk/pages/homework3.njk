@@ -1,0 +1,18 @@
+{% set title = "Vue homework 3" %}
+{% extends "layouts/master.njk" %}
+
+{% block content %}
+{# завдання 1 #}
+<div id="watch-example">
+  <p>
+    Задайте вопрос, на который можно ответить «да» или «нет»:
+    <input v-model="question">
+  </p>
+  <p class="apiAnswer">{{ answer }}</p>
+  <img class="apiImage" :src="image" alt="">
+</div>
+{# завдання 2 #}
+{# <div id="app2">
+
+</div> #}
+{% endblock %}
