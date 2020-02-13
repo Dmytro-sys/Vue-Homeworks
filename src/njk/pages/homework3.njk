@@ -11,8 +11,84 @@
   <p class="apiAnswer">{{ answer }}</p>
   <img :class="{ apiImage: isActive }" :src="image" alt="">
 </div>
-{# завдання 2 #}
-{# <div id="app2">
 
-</div> #}
+{# завдання 2 #}
+<div id="app">
+
+ <div class="main--container">
+
+                <div class="main__wrap">
+
+                    <h2 class="main__title title__global">
+                        How Dreamshare works?</h2>
+
+                    <ul id="siema" class="main__list" :class="{ siema: isActive }">
+
+                        <li class="main__item">
+
+                            <div class="main-item__image"
+                                style=" background-color: red;"></div>
+                            <div class="main-item__overlay"></div>
+                            <button class="main-item__button">Step 1</button>
+                            <h3 class="main-item__title">Sed leo enim, condimentum</h3>
+                            <p class="main-item__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                Tempore
+                                distinctio, praesentium minus provident nihil totam officiis.
+                            </p>
+
+
+                        </li>
+
+                        <li class="main__item">
+
+                            <div class="main-item__image"
+                                style=" background-color: blue;"></div>
+                            <div class="main-item__overlay"></div>
+                            <button class="main-item__button">Step 2</button>
+                            <h3 class="main-item__title">Morbi velit risus</h3>
+                            <p class="main-item__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                Tempore
+                                distinctio, praesentium minus provident nihil totam officiis.
+                            </p>
+
+
+                        </li>
+
+                        <li class="main__item">
+
+                            <div class="main-item__image"
+                                style=" background-color: green;"></div>
+                            <div class="main-item__overlay"></div>
+                            <button class="main-item__button">Step 3</button>
+                            <h3 class="main-item__title">Sed leo enim, condimentum</h3>
+                            <p class="main-item__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                Tempore
+                                distinctio, praesentium minus provident nihil totam officiis.
+                            </p>
+
+
+                        </li>
+
+                         <li class="main__item">
+
+                            <div class="main-item__image"
+                                style=" background-color: orange;"></div>
+                            <div class="main-item__overlay"></div>
+                            <button class="main-item__button">Step 4</button>
+                            <h3 class="main-item__title">Sed leo enim, condimentum</h3>
+                            <p class="main-item__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                Tempore
+                                distinctio, praesentium minus provident nihil totam officiis.
+                            </p>
+
+
+                        </li>
+
+                    </ul>
+<button class="prev">prev</button>
+<button class="next">next</button>
+                </div> <!-- end main__wrap -->
+
+            </div><!-- end container -->
+</div>
 {% endblock %}

@@ -41775,6 +41775,38 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
+  var app = new vue_dist_vue_esm_js__WEBPACK_IMPORTED_MODULE_1__["default"]({
+    el: '#app',
+    data: {
+      isActive: false
+    },
+    mounted: function mounted() {
+      // this.siema = new Siema()
+      this.isActive = true;
+      console.log("Hello");
+    }
+  }); //////////////////////////////////////////////////////////
+
+  var mySiema = new siema__WEBPACK_IMPORTED_MODULE_4___default.a({
+    selector: '.siema',
+    duration: 200,
+    easing: 'ease-out',
+    perPage: 1,
+    startIndex: 0,
+    draggable: true,
+    multipleDrag: false,
+    threshold: 20,
+    loop: false,
+    rtl: false,
+    onInit: function onInit() {},
+    onChange: function onChange() {}
+  });
+  document.querySelector('.prev').addEventListener('click', function () {
+    return mySiema.prev();
+  });
+  document.querySelector('.next').addEventListener('click', function () {
+    return mySiema.next();
+  });
 });
 
 /***/ })
