@@ -5,75 +5,46 @@ import axios from 'axios';
 import Siema from 'siema';
 
 document.addEventListener('DOMContentLoaded', () => {
-	var watchExampleVM = new Vue({
-		el: '#watch-example',
-		data: {
-			question: '',
-			answer: 'Пока вы не зададите вопрос, я не могу ответить!',
-			image: '',
-			isActive: false
-		},
-		watch: {
-			question: function (newQuestion, oldQuestion) {
-				this.answer = 'Ожидаю, когда вы закончите печатать...'
-				this.debouncedGetAnswer()
-				this.isActive = false
-				this.image = ''
+	Vue.component('paralax-list', {
+		data() {
+			return {
+				images: [
+					{ image: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612' },
+					{ image: 'https://cdn.pixabay.com/photo/2013/07/21/13/00/rose-165819__340.jpg' },
+					{ image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg' },
+					{ image: 'https://cdn.pixabay.com/photo/2015/02/24/15/41/dog-647528__340.jpg' }
+				  ],
+				 windowScroll: document.documentElement.scrollTop,
+				 windowHeight: document.documentElement.scrollHeight - document.documentElement.clientHeight,
 			}
 		},
-		created: function () {
-			this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
-		},
-		methods: {
-			getAnswer: function () {
-				if (this.question.indexOf('?') === -1) {
-					this.answer = 'Вопросы обычно заканчиваются вопросительным знаком. ;-)'
-					return
-				}
-				this.answer = 'Думаю...'
-				var vm = this
-				axios.get('https://yesno.wtf/api')
-					.then(function (response) {
-						vm.answer = _.capitalize(response.data.answer)
-						vm.image = response.data.image
-						vm.isActive = true
-					})
-					.catch(function (error) {
-						vm.answer = 'Ошибка! Не могу связаться с API. ' + error
-					})
-			}
+		template: `<ul class="parallax__list">
+		<paralax-item :article='image' v-for='image in images'></paralax-item>
+		</ul>`,
+		mounted() {
+			console.log(this.windowScroll)
+			console.log(this.windowHeight)
 		}
-	})
+	  })
 
-const app = new Vue({
-	el: '#app',
-	data: {
-		isActive: false,
-	},
- mounted: function () {
-	// this.siema = new Siema()
-	this.isActive = true
-	console.log("Hello");
- }
+	Vue.component('paralax-item', {
+		props:['article'],
+		template: `<li class="parallax__item">
+		<img class="parallax__image" :src="article.image" alt=""></img>
+		</li>`,
+		methods: {
+		   handleScroll() {
+			 // тут знімаємо значення скролу та модифікуємо
+			 // якусь змінну з datа, яка відповідатиме за
+			 // зміщення бекграунду на компоненті
+		   },
+		},
+		mounted() {
+		  window.addEventListener('scroll', this.handleScroll);
+		}
+	  })
+
+	  const app = new Vue({
+		el: '#app',
+	  });
 });
-
-//////////////////////////////////////////////////////////
-const mySiema = new Siema({
-	selector: '.siema',
-	duration: 200,
-	easing: 'ease-out',
-	perPage: 1,
-	startIndex: 0,
-	draggable: true,
-	multipleDrag: false,
-	threshold: 20,
-	loop: false,
-	rtl: false,
-	onInit: () => {},
-	onChange: () => {},
-}); 
-
-document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
-document.querySelector('.next').addEventListener('click', () => mySiema.next());
-});
-

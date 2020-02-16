@@ -41737,75 +41737,43 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  var watchExampleVM = new vue_dist_vue_esm_js__WEBPACK_IMPORTED_MODULE_1__["default"]({
-    el: '#watch-example',
-    data: {
-      question: '',
-      answer: 'Пока вы не зададите вопрос, я не могу ответить!',
-      image: '',
-      isActive: false
+  vue_dist_vue_esm_js__WEBPACK_IMPORTED_MODULE_1__["default"].component('paralax-list', {
+    data: function data() {
+      return {
+        images: [{
+          image: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612'
+        }, {
+          image: 'https://cdn.pixabay.com/photo/2013/07/21/13/00/rose-165819__340.jpg'
+        }, {
+          image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'
+        }, {
+          image: 'https://cdn.pixabay.com/photo/2015/02/24/15/41/dog-647528__340.jpg'
+        }],
+        windowScroll: document.documentElement.scrollTop,
+        windowHeight: document.documentElement.scrollHeight - document.documentElement.clientHeight
+      };
     },
-    watch: {
-      question: function question(newQuestion, oldQuestion) {
-        this.answer = 'Ожидаю, когда вы закончите печатать...';
-        this.debouncedGetAnswer();
-        this.isActive = false;
-        this.image = '';
-      }
-    },
-    created: function created() {
-      this.debouncedGetAnswer = Lodash__WEBPACK_IMPORTED_MODULE_2___default.a.debounce(this.getAnswer, 500);
-    },
+    template: "<ul class=\"parallax__list\">\n\t\t<paralax-item :article='image' v-for='image in images'></paralax-item>\n\t\t</ul>",
+    mounted: function mounted() {
+      console.log(this.windowScroll);
+      console.log(this.windowHeight);
+    }
+  });
+  vue_dist_vue_esm_js__WEBPACK_IMPORTED_MODULE_1__["default"].component('paralax-item', {
+    props: ['article'],
+    template: "<li class=\"parallax__item\">\n\t\t<img class=\"parallax__image\" :src=\"article.image\" alt=\"\"></img>\n\t\t</li>",
     methods: {
-      getAnswer: function getAnswer() {
-        if (this.question.indexOf('?') === -1) {
-          this.answer = 'Вопросы обычно заканчиваются вопросительным знаком. ;-)';
-          return;
-        }
-
-        this.answer = 'Думаю...';
-        var vm = this;
-        axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('https://yesno.wtf/api').then(function (response) {
-          vm.answer = Lodash__WEBPACK_IMPORTED_MODULE_2___default.a.capitalize(response.data.answer);
-          vm.image = response.data.image;
-          vm.isActive = true;
-        }).catch(function (error) {
-          vm.answer = 'Ошибка! Не могу связаться с API. ' + error;
-        });
+      handleScroll: function handleScroll() {// тут знімаємо значення скролу та модифікуємо
+        // якусь змінну з datа, яка відповідатиме за
+        // зміщення бекграунду на компоненті
       }
+    },
+    mounted: function mounted() {
+      window.addEventListener('scroll', this.handleScroll);
     }
   });
   var app = new vue_dist_vue_esm_js__WEBPACK_IMPORTED_MODULE_1__["default"]({
-    el: '#app',
-    data: {
-      isActive: false
-    },
-    mounted: function mounted() {
-      // this.siema = new Siema()
-      this.isActive = true;
-      console.log("Hello");
-    }
-  }); //////////////////////////////////////////////////////////
-
-  var mySiema = new siema__WEBPACK_IMPORTED_MODULE_4___default.a({
-    selector: '.siema',
-    duration: 200,
-    easing: 'ease-out',
-    perPage: 1,
-    startIndex: 0,
-    draggable: true,
-    multipleDrag: false,
-    threshold: 20,
-    loop: false,
-    rtl: false,
-    onInit: function onInit() {},
-    onChange: function onChange() {}
-  });
-  document.querySelector('.prev').addEventListener('click', function () {
-    return mySiema.prev();
-  });
-  document.querySelector('.next').addEventListener('click', function () {
-    return mySiema.next();
+    el: '#app'
   });
 });
 
