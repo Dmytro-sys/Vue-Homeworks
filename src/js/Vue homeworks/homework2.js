@@ -32,26 +32,29 @@ Vue.component('blog-list', {
     },
   });
   
-  Vue.component('first-component', {
-    props: ['count'],
-    template: `<input type="text" placeholder="Count + 1">`,
-    created() {
-      console.log("first-component created");
-    }
-  });
-  
-  Vue.component('second-component', {
-    data: function () {
-      return {
-        count: 0
-      }},
-      template: '<p v-on:mouseover="count++">Count is {{ count }}</p>',
-    created() {
-      console.log("second-component created");
-    }
-  });
+
   
   document.addEventListener('DOMContentLoaded', () => {
+
+	Vue.component('first-component', {
+		data: function () {
+			return {
+			  count: 0
+			}},
+		template: `<p v-bind:item='count' v-on:mouseover='count++'>{{ count }}</p>`,
+		created() {
+		  console.log("first-component created");
+		}
+	  });
+	  
+	  Vue.component('second-component', {
+		props: ['item'],
+		  template: '<p>Count is {{ item }}</p>',
+		created() {
+		  console.log("second-component created");
+		}
+	  });
+
     const app1 = new Vue({
       el: '#app1',
       data: {
@@ -65,11 +68,6 @@ Vue.component('blog-list', {
   
     const app2 = new Vue({
       el: '#app2',
-      methods: {
-        countUp() {
-          return this.count += 1;
-        }
-      },
       created() {
         console.log("app2 created");
       }

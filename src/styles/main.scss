@@ -207,3 +207,98 @@ main {
   height: 100%;
   object-fit: cover;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Cookie);
+
+/*-------------------------
+	Services list
+--------------------------*/
+
+.main__form {
+  background-color: #61a1bc;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px #ccc;
+  width: 50%;
+  padding: 35px 60px;
+  margin: 50px auto;
+}
+
+.main__title {
+  color: #fff;
+  font-size: 64px;
+  font-family: 'Cookie', cursive;
+  line-height: 1;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.main__btn {
+  width: 180px;
+  border: none;
+  background-color: #8ec16d;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  line-height: 1.5;
+  color: #FFFFFF;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+.main__form ul {
+  list-style: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  margin: 20px 0 15px;
+}
+
+.main__form ul li {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 20px 30px;
+  background-color: #e35885;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.main__form ul li span {
+  float: right;
+}
+
+.main__form ul li.active {
+  background-color: #8ec16d;
+}
+
+div.total {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+div.total span {
+  float: right;
+}
+
+.add__service {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  margin-top: 20px;
+}
+
+.add__service label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}

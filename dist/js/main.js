@@ -41737,43 +41737,61 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  vue_dist_vue_esm_js__WEBPACK_IMPORTED_MODULE_1__["default"].component('paralax-list', {
-    data: function data() {
-      return {
-        images: [{
-          image: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612'
-        }, {
-          image: 'https://cdn.pixabay.com/photo/2013/07/21/13/00/rose-165819__340.jpg'
-        }, {
-          image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'
-        }, {
-          image: 'https://cdn.pixabay.com/photo/2015/02/24/15/41/dog-647528__340.jpg'
-        }],
-        windowScroll: document.documentElement.scrollTop,
-        windowHeight: document.documentElement.scrollHeight - document.documentElement.clientHeight
-      };
-    },
-    template: "<ul class=\"parallax__list\">\n\t\t<paralax-item :article='image' v-for='image in images'></paralax-item>\n\t\t</ul>",
-    mounted: function mounted() {
-      console.log(this.windowScroll);
-      console.log(this.windowHeight);
-    }
+  vue_dist_vue_esm_js__WEBPACK_IMPORTED_MODULE_1__["default"].filter('currency', function (value) {
+    return '$' + value.toFixed(2);
   });
-  vue_dist_vue_esm_js__WEBPACK_IMPORTED_MODULE_1__["default"].component('paralax-item', {
-    props: ['article'],
-    template: "<li class=\"parallax__item\">\n\t\t<img class=\"parallax__image\" :src=\"article.image\" alt=\"\"></img>\n\t\t</li>",
+  var demo = new vue_dist_vue_esm_js__WEBPACK_IMPORTED_MODULE_1__["default"]({
+    el: '#main',
+    data: {
+      newServiceName: '',
+      newServicePrice: '',
+      showServiceModal: false,
+      services: [{
+        name: 'Web developing',
+        price: 100,
+        active: false
+      }, {
+        name: 'Design',
+        price: 120,
+        active: false
+      }, {
+        name: 'Integration',
+        price: 85,
+        active: false
+      }, {
+        name: 'Training',
+        price: 135,
+        active: false
+      }]
+    },
     methods: {
-      handleScroll: function handleScroll() {// тут знімаємо значення скролу та модифікуємо
-        // якусь змінну з datа, яка відповідатиме за
-        // зміщення бекграунду на компоненті
+      toggleActive: function toggleActive(service) {
+        service.active = !service.active;
+      },
+      toggleModal: function toggleModal() {
+        this.showServiceModal = !this.showServiceModal;
+      },
+      total: function total() {
+        var total = 0;
+        this.services.forEach(function (service) {
+          if (service.active) {
+            total += service.price;
+          }
+        });
+        return total;
+      },
+      addService: function addService() {
+        if (!this.showServiceModal && this.newServiceName && this.newServicePrice) {
+          this.services.push({
+            name: this.newServiceName,
+            price: Number(this.newServicePrice),
+            active: false
+          });
+        }
+
+        this.newServiceName = '', this.newServicePrice = '';
       }
-    },
-    mounted: function mounted() {
-      window.addEventListener('scroll', this.handleScroll);
     }
-  });
-  var app = new vue_dist_vue_esm_js__WEBPACK_IMPORTED_MODULE_1__["default"]({
-    el: '#app'
   });
 });
 

@@ -11,7 +11,7 @@ const requireDir = require('require-dir'),
     njk: {
       src: ['./src/njk/*.njk', './src/njk/pages/*.njk', './src/njk/Vue homeworks/*.njk'],
       dist: './dist/',
-      watch: ['./src/blocks/**/*.njk', './src/njk/**/*.njk'],
+      watch: ['./src/blocks/**/*.njk', './src/njk/**/*.njk',],
     },
     pug: {
       src: ['./src/pug/*.pug', './src/pug/pages/*.pug'],

@@ -1,0 +1,37 @@
+{% set title = "Vue homework 5" %}
+{% extends "layouts/master.njk" %}
+
+{% block content %}
+
+<form id="main" v-on:submit.prevent="addService" class="main__form">
+
+    <h1 class="main__title">Services</h1>
+    <button class="main__btn" v-on:click="toggleModal">Add service</button>
+
+    <div class="add__service" v-if="showServiceModal">
+        <label for="new-service">Add new service:
+            <input v-model="newServiceName" id="new-service" placeholder="Type service name">
+        </label>
+
+        <label for="new-service-price">Add service price:
+            <input v-model="newServicePrice" id="new-service-price" placeholder="Type service price">
+        </label>
+    </div>
+
+    <ul>
+
+        <li v-for="(service, index) in services" v-on:click="toggleActive(service)" v-bind:key="index"
+            v-bind:class="{ 'active': service.active}">
+
+            {{service.name}} <span>{{service.price | currency}}</span>
+
+        </li>
+    </ul>
+
+    <div class="total">
+        Total: <span>{{total() | currency}}</span>
+    </div>
+
+</form>
+
+{% endblock %}

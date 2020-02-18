@@ -5,46 +5,71 @@ import axios from 'axios';
 import Siema from 'siema';
 
 document.addEventListener('DOMContentLoaded', () => {
-	Vue.component('paralax-list', {
-		data() {
-			return {
-				images: [
-					{ image: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612' },
-					{ image: 'https://cdn.pixabay.com/photo/2013/07/21/13/00/rose-165819__340.jpg' },
-					{ image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg' },
-					{ image: 'https://cdn.pixabay.com/photo/2015/02/24/15/41/dog-647528__340.jpg' }
-				  ],
-				 windowScroll: document.documentElement.scrollTop,
-				 windowHeight: document.documentElement.scrollHeight - document.documentElement.clientHeight,
-			}
-		},
-		template: `<ul class="parallax__list">
-		<paralax-item :article='image' v-for='image in images'></paralax-item>
-		</ul>`,
-		mounted() {
-			console.log(this.windowScroll)
-			console.log(this.windowHeight)
-		}
-	  })
 
-	Vue.component('paralax-item', {
-		props:['article'],
-		template: `<li class="parallax__item">
-		<img class="parallax__image" :src="article.image" alt=""></img>
-		</li>`,
-		methods: {
-		   handleScroll() {
-			 // тут знімаємо значення скролу та модифікуємо
-			 // якусь змінну з datа, яка відповідатиме за
-			 // зміщення бекграунду на компоненті
-		   },
-		},
-		mounted() {
-		  window.addEventListener('scroll', this.handleScroll);
-		}
-	  })
+Vue.filter('currency', function (value) {
+  return '$' + value.toFixed(2);
+});
 
-	  const app = new Vue({
-		el: '#app',
-	  });
+const demo = new Vue({
+  el: '#main',
+  data: {
+      newServiceName: '',
+      newServicePrice: '',
+      showServiceModal: false,
+
+      services: [
+        {
+          name: 'Web developing',
+          price: 100,
+          active:false
+        },{
+          name: 'Design',
+          price: 120,
+          active:false
+        },{
+          name: 'Integration',
+          price: 85,
+          active:false
+        },{
+          name: 'Training',
+          price: 135,
+          active:false
+        },
+      ],
+      
+  },
+  methods: {
+    toggleActive: function(service){
+      service.active = !service.active;
+    },
+    toggleModal: function(){
+      this.showServiceModal = !this.showServiceModal;
+    },
+    total: function(){
+
+        let total = 0;
+
+        this.services.forEach(function(service){
+          if (service.active){
+            total += service.price;
+          }
+        });
+
+       return total;
+      },
+
+      addService: function(){
+        if(!this.showServiceModal && this.newServiceName && this.newServicePrice) {
+          this.services.push({
+            name: this.newServiceName,
+            price: Number(this.newServicePrice),
+            active: false
+          })
+        }
+
+        this.newServiceName = '',
+        this.newServicePrice = ''
+        } 
+  }
+});
 });

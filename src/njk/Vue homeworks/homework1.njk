@@ -16,8 +16,8 @@
 <div id="listComponent" class="container">
 	<h2>{{title}}</h2>
 	<ul>
-		<list-item v-for="(item, index) in mytasks" v-bind:value="item" v-bind:key="item.id"
-			v-on:click="deleteTask(index)" class="item">
+		<list-item v-for="(item, index) in mytasks" v-bind:value="item" v-bind:key="index"
+			v-bind:index="index" v-on:remove="mytasks.splice(index, 1)" class="item">
 		</list-item>
 	</ul>
 </div>
